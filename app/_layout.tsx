@@ -7,6 +7,10 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'nativewind';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Toaster } from 'sonner-native';
+import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
+import migrations from '@/drizzle/migrations';
+import db from '@/db/initDb';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -15,6 +19,7 @@ export {
 
 export default function RootLayout() {
   const { colorScheme } = useColorScheme();
+  const _ = useMigrations(db, migrations)
 
   return (
     <SafeAreaProvider>
@@ -23,12 +28,14 @@ export default function RootLayout() {
         <Stack 
           screenOptions={{
             headerShown: false,
-            animation: 'ios_from_left',
+            animation: 'simple_push',
             gestureEnabled: true,
           }}
           >
           <Stack.Screen name='index' />
+          <Stack.Screen name='new_channel' />
         </Stack>
+        <Toaster />
         <PortalHost />
       </ThemeProvider>
     </SafeAreaProvider>

@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button';
 import { Text } from 'react-native';
 import BalanceCrard from '@/components/BalanceCrard';
 import SpaceCardList from '@/components/SpaceCardList';
+import { useState } from 'react';
 
 const index = () => {
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <SafeAreaView className='w-full px-5 py-[10] flex-1'>
       <View className='flex-1 gap-[20]'>
@@ -19,14 +21,14 @@ const index = () => {
           <View>
             <Text>Tsinjara</Text>
           </View>
-          <Dialog >
+          <Dialog open={open} >
             <DialogTrigger asChild>
-              <Button className='bg-emerald-900'>
-                <Plus size={12} color={'black'} />
+              <Button className='bg-emerald-900' onPress={()=> setOpen(true)} >
+                <Plus size={12} />
               </Button>
             </DialogTrigger>
             <DialogContent>
-              <CreationModal />
+              <CreationModal setModal={setOpen} />
             </DialogContent>
           </Dialog>
         </View>
