@@ -21,7 +21,7 @@ const index = () => {
           <View>
             <Text>Tsinjara</Text>
           </View>
-          <Dialog open={open} >
+          <Dialog open={open} onOpenChange={setOpen} >
             <DialogTrigger asChild>
               <Button className='bg-emerald-900' onPress={()=> setOpen(true)} >
                 <Plus size={12} />

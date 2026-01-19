@@ -28,7 +28,7 @@ export default function RootLayout() {
         <Stack 
           screenOptions={{
             headerShown: false,
-            animation: 'simple_push',
+            animation: 'slide_from_bottom',
             gestureEnabled: true,
           }}
           >
