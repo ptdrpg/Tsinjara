@@ -18,7 +18,7 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>
+      <ThemeProvider value={NAV_THEME[colorScheme ?? 'dark']}>
         <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
         <Stack 
           screenOptions={{
