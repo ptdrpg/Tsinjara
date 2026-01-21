@@ -9,6 +9,9 @@ export const useGetUser = ()=>{
   return useQuery({
     queryKey: QUERY_KEY.user,
     queryFn: () => getUser(),
+    staleTime: Infinity,
+    gcTime: Infinity,
+    retry: false,
   })
 }
 
@@ -17,6 +20,6 @@ export const useSignup = () => {
     mutationFn: (data: UserType)=> newUserController(data),
     onSuccess: ()=>{
       toast.success("User created successfully");
-    }
+    },
   })
 }

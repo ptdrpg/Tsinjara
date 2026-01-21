@@ -5,6 +5,9 @@ import { InsertResType, UserType } from "../model/type"
 
 export const getUser = async () => {
   const res: UserType[] = await db.select().from(UserTable);
+  if (res.length == 0 ) {
+    return null;
+  }
   return res[0];
 }
 
