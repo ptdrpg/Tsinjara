@@ -9,7 +9,7 @@ type props = {
 
 const CreationModal = ({setModal}: props) => {
   return (
-    <View className='w-full h-28 items-center justify-center gap-3'>
+    <View className='w-full h-max items-center justify-center gap-3'>
       {
         creation_data.map((item, index) => (
           <CreationSheetList key={index} title={item.title} subtitle={item.subtitle} icon={item.icon} link={item.link} setModal={setModal} />

@@ -23,8 +23,8 @@ const CreationSheetList = ({ title, subtitle, icon: Icon, link, setModal }: prop
   }
 
   return (
-    <TouchableOpacity className='h-9' onPress={handleNavigate}>
-      <View className='w-full flex-1 flex-row items-center justify-start gap-[10]'>
+    <TouchableOpacity className='h-max' onPress={handleNavigate}>
+      <View className='w-full h-max flex-row items-center justify-start gap-[10]'>
         <View className='p-[10] bg-amber-600 text-black rounded-sm'>
           <Icon size={16} color="black" />
         </View>

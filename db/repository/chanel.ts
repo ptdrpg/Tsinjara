@@ -4,9 +4,9 @@ import { ChanelTable } from "../model/schema"
 import { ChanelType, InsertResType } from "../model/type";
 import uuid from 'react-native-uuid';
 
-export const getAllChannel = async (id: string): Promise<ChanelType[]> => {
+export const getAllChannel = async (): Promise<ChanelType[]> => {
   try {
-    const res: ChanelType[] = await db.select().from(ChanelTable).where(eq(ChanelTable.owner_id, id));
+    const res: ChanelType[] = await db.select().from(ChanelTable);
     return res;
   } catch (error) {
     throw error;

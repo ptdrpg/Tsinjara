@@ -4,10 +4,10 @@ import { QUERY_KEY } from "../constant"
 import { ChanelType } from "../model/type"
 import { toast } from "sonner-native"
 
-export const useGetAllChannel = (id: string) => {
+export const useGetAllChannel = () => {
   return useQuery({
     queryKey: QUERY_KEY.channel.all,
-    queryFn: () => getAllChannel(id),
+    queryFn: () => getAllChannel(),
   }) 
 }
 
@@ -16,6 +16,7 @@ export const useCreateChannel = () => {
   return useMutation({
     mutationFn: (data: ChanelType) => newChanel(data),
     onSuccess: () => {
+      toast.success("Space successfuly created");
       queryClient.invalidateQueries({ queryKey: QUERY_KEY.channel.all });
     },
     onError: (error) => {
