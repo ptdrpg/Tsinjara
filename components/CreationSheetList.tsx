@@ -9,17 +9,18 @@ type props = {
   icon: React.ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
-  link: string;
-    setModal: React.Dispatch<React.SetStateAction<boolean>>
-  
+  link?: string;  
+  closeModal: () => void
 }
 
-const CreationSheetList = ({ title, subtitle, icon: Icon, link, setModal }: props) => {
+const CreationSheetList = ({ title, subtitle, icon: Icon, link, closeModal }: props) => {
   const navigate = useRouter();
 
   const handleNavigate = () => {
-    setModal(false);
-    navigate.push(link as Href);
+    closeModal();
+    if (link) {
+      navigate.push(link as Href);
+    }
   }
 
   return (

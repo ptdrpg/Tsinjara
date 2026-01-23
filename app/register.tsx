@@ -5,8 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useForm, Controller } from "react-hook-form";
-import { UserType } from '@/db/model/type';
-import { useSignup } from '@/db/query/user';
+import { UserType } from '@/service/model/type';
+import { useSignup } from '@/service/query/user';
 import { useRouter } from 'expo-router';
 
 const Register = () => {

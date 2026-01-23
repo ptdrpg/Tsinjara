@@ -4,7 +4,7 @@ import { creation_data } from '@/static/creation'
 import CreationSheetList from './CreationSheetList'
 
 type props = {
-  setModal: React.Dispatch<React.SetStateAction<boolean>>
+  setModal: ()=> void
 }
 
 const CreationModal = ({setModal}: props) => {
@@ -12,7 +12,7 @@ const CreationModal = ({setModal}: props) => {
     <View className='w-full h-max items-center justify-center gap-3'>
       {
         creation_data.map((item, index) => (
-          <CreationSheetList key={index} title={item.title} subtitle={item.subtitle} icon={item.icon} link={item.link} setModal={setModal} />
+          <CreationSheetList key={index} title={item.title} subtitle={item.subtitle} icon={item.icon} link={item.link} closeModal={setModal} />
         ))
       }
     </View>

@@ -7,14 +7,25 @@ import { Button } from '@/components/ui/button';
 import { Text } from 'react-native';
 import BalanceCrard from '@/components/BalanceCrard';
 import SpaceCardList from '@/components/SpaceCardList';
-import { useEffect, useState } from 'react';
-import { useGetUser } from '@/db/query/user';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useGetUser } from '@/service/query/user';
 import { useRouter } from 'expo-router';
+import { BottomSheetBackdrop, BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet'
 
 const index = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
+  const sheetRef = useRef<BottomSheetModal>(null);
+  const snapPoint = useMemo(()=> ["25%"],[]);
+
+  const handleSnapPress = useCallback(() => {
+    sheetRef.current?.present();
+  },[]);
+
+  const handleClosePres = useCallback(()=> {
+    sheetRef.current?.dismiss();
+  },[])
 
   useEffect(()=> {
     if (isLoading) return;
@@ -41,16 +52,31 @@ const index = () => {
           <View>
             <Text>Tsinjara</Text>
           </View>
-          <Dialog open={open} onOpenChange={setOpen} >
-            <DialogTrigger asChild>
-              <Button className='bg-emerald-900' onPress={()=> setOpen(true)} >
-                <Plus size={12} />
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <CreationModal setModal={setOpen} />
-            </DialogContent>
-          </Dialog>
+          <Button className='bg-emerald-900' onPress={handleSnapPress} >
+            <Plus size={12} />
+          </Button>
+          <BottomSheetModal
+            ref={sheetRef}
+            index={0}
+            snapPoints={snapPoint}
+            enableDynamicSizing={false}
+            $modal={true}
+            backdropComponent={(backdropProps: BottomSheetBackdropProps)=> (
+              <BottomSheetBackdrop 
+                {...backdropProps}
+                disappearsOnIndex={-1}
+                appearsOnIndex={0}
+                opacity={0.5}
+                pressBehavior="close"
+              />
+            )}
+          >
+            <BottomSheetScrollView >
+              {
+                <CreationModal setModal={handleClosePres} />
+              }
+            </BottomSheetScrollView>
+          </BottomSheetModal>
         </View>
         <BalanceCrard />
         <SpaceCardList />

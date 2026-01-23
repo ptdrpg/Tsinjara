@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import React from 'react'
 import { Search } from 'lucide-react-native'
-import { useGetAllChannel } from '@/db/query/chanel'
+import { useGetAllChannel } from '@/service/query/chanel'
 import SpaceCard from './SpaceCard'
 
 const SpaceCardList = () => {
@@ -16,7 +16,7 @@ const SpaceCardList = () => {
       <View className='w-full flex items-start justify-start gap-[10]'>
         {
           spaces?.map((items, idx) => (
-            <SpaceCard title={items.label} link='' key={idx} />
+            <SpaceCard title={items.label} link={items.id} key={idx} />
           ))
         }
       </View>

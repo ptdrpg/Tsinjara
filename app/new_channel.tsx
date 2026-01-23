@@ -7,10 +7,9 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'expo-router';
 import { useForm , Controller} from 'react-hook-form';
-import { ChanelType } from '@/db/model/type';
-import { useGetUser } from '@/db/query/user';
-import { useCreateChannel } from '@/db/query/chanel';
-
+import { ChanelType } from '@/service/model/type';
+import { useCreateChannel } from '@/service/query/chanel';
+import { useGetUser } from '@/service/query/user';
 
 const new_channel = () => {
   const { control, handleSubmit, watch } = useForm<ChanelType>();
