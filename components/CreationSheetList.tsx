@@ -10,22 +10,28 @@ type props = {
     Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
   link?: string;  
-  closeModal: () => void
+  closeModal?: () => void
+  setCreatmodal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CreationSheetList = ({ title, subtitle, icon: Icon, link, closeModal }: props) => {
+const CreationSheetList = ({ title, subtitle, icon: Icon, link, closeModal, setCreatmodal }: props) => {
   const navigate = useRouter();
 
   const handleNavigate = () => {
-    closeModal();
-    if (link) {
+    if (closeModal) {
+      closeModal();
+    }
+    if (setCreatmodal && title == "New Channel") {
+      setCreatmodal(true)
+    }
+    if (link && title != "New Channel") {
       navigate.push(link as Href);
     }
   }
 
   return (
     <TouchableOpacity className='h-max' onPress={handleNavigate}>
-      <View className='w-full h-max flex-row items-center justify-start gap-[10]'>
+      <View className='w-full h-max flex-row items-center justify-start gap-[10] '>
         <View className='p-[10] bg-amber-600 text-black rounded-sm'>
           <Icon size={16} color="black" />
         </View>

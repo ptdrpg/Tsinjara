@@ -43,7 +43,6 @@ export default function RootLayout() {
               >
                 <Stack.Screen name="index" />
                 <Stack.Screen name="register" />
-                <Stack.Screen name="new_channel" />
               </Stack>
 
               <Toaster />

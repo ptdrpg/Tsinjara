@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Plus } from 'lucide-react-native';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,13 +11,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGetUser } from '@/service/query/user';
 import { useRouter } from 'expo-router';
 import { BottomSheetBackdrop, BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet'
+import NewSpace from './new_channel';
 
 const index = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { data: user, isLoading } = useGetUser();
   const router = useRouter();
   const sheetRef = useRef<BottomSheetModal>(null);
-  const snapPoint = useMemo(()=> ["25%"],[]);
+  const snapPoint = useMemo(()=> ["22%"],[]);
 
   const handleSnapPress = useCallback(() => {
     sheetRef.current?.present();
@@ -73,13 +74,18 @@ const index = () => {
           >
             <BottomSheetScrollView >
               {
-                <CreationModal setModal={handleClosePres} />
+                <CreationModal setModal={handleClosePres} setCreatmodal={setOpen} />
               }
             </BottomSheetScrollView>
           </BottomSheetModal>
         </View>
         <BalanceCrard />
         <SpaceCardList />
+        <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+            <NewSpace closeModal={setOpen} />
+        </DialogContent>
+      </Dialog>
       </View>
     </SafeAreaView>
   )

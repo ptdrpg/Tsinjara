@@ -11,14 +11,15 @@ import { ChanelType } from '@/service/model/type';
 import { useCreateChannel } from '@/service/query/chanel';
 import { useGetUser } from '@/service/query/user';
 
-const new_channel = () => {
+type props = {
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NewSpace = ({ closeModal }: props) => {
   const { control, handleSubmit, watch } = useForm<ChanelType>();
   const { data: user } = useGetUser();
   const { mutate: newSpace } = useCreateChannel();
   const navigate = useRouter();
-  const handleNavigate = () => {
-    navigate.push("/");
-  }
 
   const paraph = watch("label");
 
@@ -26,24 +27,15 @@ const new_channel = () => {
     if (user) {
       data.owner_id = user.id;
       newSpace(data);
-      navigate.push("/");
+      closeModal(false)
     }
   }
 
   return (
-    <SafeAreaView className='w-full px-5 py-[10] flex-1'>
-      <View className='flex-1 justify-between  gap-[20]'>
-        <View className='flex-1 w-full gap-[20]'>
-         <View className='w-full flex-row items-center h-max justify-between'>
-          <Button className='bg-emerald-900' onPress={handleNavigate}>
-            <ChevronLeft size={12} />
-          </Button>
-          <View>
-            <Text>Tsinjara</Text>
-          </View>
-          <View></View>
-          </View>
-          <View className="w-full justify-center">
+    <SafeAreaView className='w-full px-5 py-[10] h-max'>
+      <View className='h-max justify-between  gap-[20]'>
+        <View className='h-max w-full gap-[20]'>
+          <View className="w-full justify-center gap-[20]">
             <View className='w-full items-center justify-center'>
               <View className='px-[25] py-[15] bg-amber-600 rounded-[10]'>
                 <Text className='font-bold text-3xl' >{ paraph ? paraph.split("")[0].toUpperCase() : "D" }</Text>
@@ -77,4 +69,4 @@ const new_channel = () => {
   )
 }
 
-export default new_channel
+export default NewSpace

@@ -11,14 +11,14 @@ export const creation_data = [
     title: "New Channel",
     subtitle: "For Organized content and data",
     icon: HardDrive,
-    link: "/new_channel",
+    link: "/",
   },
   {
     title: "Join Channel",
     subtitle: "Scan QR code to join channel",
     icon: QrCode,
     link: "/",
-  }
+  },
 ]
 
 export const Tracker_data = [
