@@ -1,4 +1,13 @@
-import { ArrowDownUp, Bus, Gift, Hamburger, HardDrive, QrCode } from "lucide-react-native";
+import { 
+  ArrowDownUp, 
+  Bus, 
+  Gift,
+  Hamburger, 
+  HardDrive, 
+  QrCode,
+  Trash2,
+  Pencil
+} from "lucide-react-native";
 
 export const creation_data = [
   {
@@ -35,3 +44,16 @@ export const Tracker_data = [
     icon:ArrowDownUp,
   },
 ]
+
+export const modalSpaceItems = [
+    {
+      id: '1',
+      label: 'edit',
+      icon: Pencil,
+    },
+    {
+      id: '2',
+      label: 'delete',
+      icon: Trash2,
+    },
+  ];

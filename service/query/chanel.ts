@@ -30,6 +30,7 @@ export const useDeleteChannel = () => {
   return useMutation({
     mutationFn: (id: string) => deleteChannel(id),
     onSuccess: () => {
+      toast.success("Space successfuly deleted");
       queryClient.invalidateQueries({ queryKey: QUERY_KEY.channel.all });
     },
     onError: (error) => {
